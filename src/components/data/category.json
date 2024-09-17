@@ -1,0 +1,23 @@
+[
+    {
+        "category": {
+            "name": "uno",
+            "emoji": "📚"
+        },
+        "id": 0
+    },
+    {
+        "category": {
+            "name": "dos",
+            "emoji": "🎨"
+        },
+        "id": 1
+    },
+    {
+        "category": {
+            "name": "tres",
+            "emoji": "⚽"
+        },
+        "id": 2
+    }
+]

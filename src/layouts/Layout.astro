@@ -1,0 +1,89 @@
+---
+import Header from "../components/Header.astro";
+
+interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="Astro description" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/clipboard.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+    </head>
+    <body class="bg-pictonBlue">
+        <div id="app" class="relative min-h-screen p-2 gap-2">
+            <Header />
+            <main class="">
+                <slot />
+            </main>
+            <!-- <aside
+                class="[grid-area:aside] flex-col flex overflow-y-auto bg-blue-100"
+            >
+                <slot name="left" />
+            </aside>
+            <main class="[grid-area:main] bg-red-200">
+                <slot />
+            </main> -->
+            <!-- <footer>FOOTER</footer> -->
+        </div>
+    </body>
+</html>
+<style is:global>
+    html {
+        font-family: system-ui, sans-serif;
+        background: #5fa8d3;
+        background-size: 224px;
+        color-scheme: dark light;
+        height: 100%;
+    }
+    body {
+        background-color: #ffffff05;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-y: auto;
+    }
+    #app {
+        height: 100%;
+    }
+    /* .emoji-picker-wrapper {
+        position: absolute;
+    } */
+    .emoji-picker-wrapper.open {
+        /* When the picker is open */
+        transform: translateY(-100%); /* Slide it down */
+    }
+    .emoji-image {
+        height: 48px;
+        width: 48px;
+    }
+
+    .item-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center; /* Adjust as needed */
+    }
+    .input-text {
+        display: block;
+        padding: 0.625rem;
+        border-radius: 0.5rem;
+        border-width: 1px;
+        border-color: #d1d5db;
+        width: 100%;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        color: #111827;
+        background-color: #f9fafb;
+    }
+    .delete-button {
+        color: red;
+    }
+</style>

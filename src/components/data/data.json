@@ -1,0 +1,26 @@
+[
+    {
+        "text": "Primer ejemplo",
+        "id": 0,
+        "category": {
+            "name": "uno",
+            "emoji": "📚"
+        }
+    },
+    {
+        "text": "Segundo ejemplo",
+        "id": 1,
+        "category": {
+            "name": "dos",
+            "emoji": "🎨"
+        }
+    },
+    {
+        "text": "Tercer ejemplo",
+        "id": 2,
+        "category": {
+            "name": "tres",
+            "emoji": "⚽"
+        }
+    }
+]
