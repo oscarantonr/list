@@ -66,7 +66,7 @@ const ButtonBar = () => {
                         item.emoji
                     }\nProductos:\n ${item.products.join("\n ")}\n`
                 );
-                return `**${categoryName}** ${
+                return `*${categoryName}* ${
                     item.emoji
                 }\nProductos:\n ${item.products.join("\n ")}\n`;
             })
