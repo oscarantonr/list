@@ -31,9 +31,7 @@ const DropdownSubjects = ({ inputId, selectedCategory, onCategoryChange }) => {
             onChange={handleChange}
             className="bg-moonstone border border-idigoDye rounded-md mr-2 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-3/5"
         >
-            <option value="" className="bg-moonstone">
-                Sin categoría
-            </option>
+            <option value="" className="bg-moonstone"></option>
             {$items.map((option) => (
                 <option
                     key={option.id}

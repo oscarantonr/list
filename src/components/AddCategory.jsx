@@ -162,7 +162,7 @@ const AddCategory = () => {
                                   classNames="fade"
                               >
                                   <div
-                                      className={`h-fit w-fit product font-sans mx-2 mb-4 font-semibold text-lg bg-blueGray-50 border-2 border-white rounded-md`}
+                                      className={`h-fit w-fit product mx-2 mb-4 font-semibold text-lg bg-blueGray-50 border-2 border-white rounded-md`}
                                   >
                                       <div className="header-category bg-columbiaBlue flex justify-between py-2 pl-5 uppercase">
                                           <span className="mr-2 text-black">
