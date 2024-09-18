@@ -1,3 +1,14 @@
+@font-face {
+  font-family: 'Harabara';
+  src:url('../fonts/Harabara.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Harabara', sans-serif;
+}
+
 .transition-container-header {
   transform: translateY(100%);
   opacity: 0;
