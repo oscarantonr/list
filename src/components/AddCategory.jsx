@@ -16,6 +16,7 @@ import ButtonBar from "./ButtonBar";
 import "./style.css";
 import AddProductFromCatComponent from "./AddProductFromCatComponent";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { Reorder, useDragControls } from "framer-motion";
 
 const AddCategory = () => {
     const [newCategory, setNewCategory] = useState("");
@@ -99,6 +100,16 @@ const AddCategory = () => {
         }
     };
 
+    const controls = useDragControls();
+
+    function startDrag(event) {
+        controls.start(event);
+    }
+
+    useEffect(() => {
+        // console.log("ORDEEEEN", $items);
+    }, [$items]);
+
     return (
         <>
             <div
@@ -154,52 +165,72 @@ const AddCategory = () => {
                     <ButtonBar client:load />
                 </div>
                 <TransitionGroup className={`flex flex-wrap justify-center`}>
-                    {$items && $items.length > 0
-                        ? $items.map((input) => (
-                              <CSSTransition
-                                  key={input.id}
-                                  timeout={500}
-                                  classNames="fade"
-                              >
-                                  <div
-                                      className={`h-fit w-fit product mx-2 mb-4 font-semibold text-lg bg-blueGray-50 border-2 border-white rounded-md`}
-                                  >
-                                      <div className="header-category bg-columbiaBlue flex justify-between py-2 pl-5 uppercase">
-                                          <span className="mr-2 text-black">
-                                              {input.category.name}
-                                              {input.category.emoji ? (
-                                                  <span className="ml-2">
-                                                      {input.category.emoji}
+                    <Reorder.Group
+                        axis="y"
+                        values={$items}
+                        onReorder={setItems}
+                    >
+                        {$items && $items.length > 0
+                            ? $items.map((input) => (
+                                  <Reorder.Item key={input.id} value={input}>
+                                      <CSSTransition
+                                          key={input.id}
+                                          timeout={500}
+                                          classNames="fade"
+                                      >
+                                          <div
+                                              className={`h-fit w-fit product mx-2 mb-4 font-semibold text-lg bg-blueGray-50 border-2 border-white rounded-md`}
+                                              onPointerDown={startDrag}
+                                          >
+                                              <div className="header-category bg-columbiaBlue flex justify-between py-2 pl-5 uppercase">
+                                                  <span className="mr-2 text-black">
+                                                      {input.category.name}
+                                                      {input.category.emoji ? (
+                                                          <span className="ml-2">
+                                                              {
+                                                                  input.category
+                                                                      .emoji
+                                                              }
+                                                          </span>
+                                                      ) : null}
                                                   </span>
-                                              ) : null}
-                                          </span>
-                                          <div></div>
-                                          <div>
-                                              <button
-                                                  className="delete-button mr-4 text-red-90 hover:text-red-700"
-                                                  onClick={() =>
-                                                      handleDelete(input.id)
-                                                  }
-                                              >
-                                                  Borrar
-                                              </button>
+                                                  <div></div>
+                                                  <div>
+                                                      <button
+                                                          className="delete-button mr-4 text-red-90 hover:text-red-700"
+                                                          onClick={() =>
+                                                              handleDelete(
+                                                                  input.id
+                                                              )
+                                                          }
+                                                      >
+                                                          Borrar
+                                                      </button>
+                                                  </div>
+                                              </div>
+                                              <div className="body-category bg-mintGreen">
+                                                  <AddProductFromCatComponent
+                                                      onAddItem={
+                                                          handleAddProduct
+                                                      }
+                                                      rap
+                                                      nextId={$counter}
+                                                      selectedCategory={
+                                                          input.category
+                                                      }
+                                                  />
+                                                  <AddProduct
+                                                      selectedCategory={
+                                                          input.category
+                                                      }
+                                                  />{" "}
+                                              </div>
                                           </div>
-                                      </div>
-                                      <div className="body-category bg-mintGreen">
-                                          <AddProductFromCatComponent
-                                              onAddItem={handleAddProduct}
-                                              rap
-                                              nextId={$counter}
-                                              selectedCategory={input.category}
-                                          />
-                                          <AddProduct
-                                              selectedCategory={input.category}
-                                          />{" "}
-                                      </div>
-                                  </div>
-                              </CSSTransition>
-                          ))
-                        : ""}
+                                      </CSSTransition>
+                                  </Reorder.Item>
+                              ))
+                            : ""}
+                    </Reorder.Group>
                 </TransitionGroup>
                 <ModalConfirm
                     isOpen={modalOpen}

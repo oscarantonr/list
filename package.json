@@ -19,6 +19,7 @@
     "@astrojs/tailwind": "^5.1.0",
     "@nanostores/react": "^0.7.2",
     "emoji-picker-react": "^4.9.2",
+    "framer-motion": "^11.5.5",
     "nanostores": "^0.10.3",
     "react": "18.2.0",
     "react-aria-modal": "^5.0.2",

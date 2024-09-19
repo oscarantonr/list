@@ -44,34 +44,37 @@ const ButtonBar = () => {
         setGroupProducts(sortedProducts);
     };
 
-    // Uso de useMemo para memorizar groupedProducts
     const groupedProducts = useMemo(() => {
-        const grouped = $groupProducts.reduce((acc, product) => {
-            const categoryName = product.category.name;
-            if (!acc[categoryName]) {
-                acc[categoryName] = {
-                    emoji: product.category.emoji,
+        const grouped = {};
+
+        $items.forEach((item) => {
+            const categoryName = item.category.name;
+
+            if (!grouped[categoryName]) {
+                grouped[categoryName] = {
+                    emoji: item.category.emoji,
                     products: [],
                 };
             }
-            acc[categoryName].products.push(product.text);
-            return acc;
-        }, {});
+
+            $groupProducts.forEach((product) => {
+                if (product.category.name === categoryName) {
+                    grouped[categoryName].products.push(product.text);
+                }
+            });
+        });
 
         return Object.keys(grouped)
             .map((categoryName) => {
+                console.log("Prueba 2", grouped);
+
                 const item = grouped[categoryName];
-                console.log(
-                    `**${categoryName}** ${
-                        item.emoji
-                    }\nProductos:\n ${item.products.join("\n ")}\n`
-                );
                 return `*${categoryName}* ${
                     item.emoji
                 }\nProductos:\n ${item.products.join("\n ")}\n`;
             })
             .join("\n");
-    }, [$groupProducts]);
+    }, [$items, $groupProducts]);
 
     return (
         <>

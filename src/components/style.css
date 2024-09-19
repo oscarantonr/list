@@ -10,7 +10,7 @@ body {
 }
 
 .transition-container-header {
-  transform: translateY(100%);
+  transform: translateY(50vh);
   opacity: 0;
   animation: slideIn 1s ease forwards, fadeIn 0.75s ease forwards;
 }
@@ -30,7 +30,7 @@ body {
 
 .transition-container {
     transition: transform 1s ease, opacity 0.75s ease;
-    transform: translateY(100%);
+    transform: translateY(50vh);
     opacity: 0;
   }
   
